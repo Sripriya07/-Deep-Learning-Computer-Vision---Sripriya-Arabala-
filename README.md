@@ -1,4 +1,5 @@
 # -Deep-Learning-Computer-Vision---Sripriya-Arabala-
+Executed using : Google colab
 # Image Brightness Detection
 
 Problem Statement : To detect brightness of an image on a scale of 0-10.
