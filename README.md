@@ -249,3 +249,46 @@ create the image generators
 Running the model: 
 
         history=model.fit_generator(train_generator,steps_per_epoch=ntrain,epochs=5,validation_data=val_generator,validation_steps=nval)
+
+Predicting for first 10 images of test set:
+       
+        X_test,y_test=read_and_process_image(test_imgs[0:10]) 
+        x=np.array(X_test)
+        test_datagen=ImageDataGenerator(rescale=1./255)
+        
+    i=0
+    text_labels=[]
+    plt.figure(figsize=(30,20))
+    for batch in test_datagen.flow(x,batch_size=1):
+    pred=model.predict(batch)
+    #print(pred)
+    pred1=np.argmax(pred)                  #returns index of the maximum probability in prediction numpy array
+    #print(pred1)
+    if pred1==0:
+        text_labels.append('1')
+    elif pred1==1:
+        text_labels.append('2')
+    elif pred1==2:
+        text_labels.append('3')
+    elif pred1==3:
+        text_labels.append('4')
+    elif pred1==4:
+        text_labels.append('1')
+    elif pred1==5:
+        text_labels.append('2')
+    elif pred1==6:
+        text_labels.append('3')
+    elif pred1==7:
+        text_labels.append('4')
+    elif pred1==8:
+        text_labels.append('1')
+    elif pred1==9:
+        text_labels.append('2')
+    plt.subplot(5/columns+1,columns,i+1)
+    plt.title("this is of brightness "+text_labels[i] + "on a scale of 10")
+    imgplot=plt.imshow(batch[0])
+    i+=1
+    if i%10 == 0:
+        break
+
+   plt.show()
